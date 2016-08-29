@@ -11,39 +11,20 @@ import java.util.Scanner;
  * Created by DTG2 on 08/25/16.
  */
 public class ChatAppClient {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner clientInput = new Scanner(System.in);
 
         try {
-
             Socket clientSocket = new Socket("localhost", 8080);
-
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-
-//            System.out.println("What is your response?");
-
-
-
-//            out.println("My name is Donald");
-
             String serverResponse;
-//            while ((serverResponse = in.readLine()) != null) {
             serverResponse = in.readLine();
             System.out.println("Received message: " + serverResponse);
-            out.println("Connection made.");
-
-            userName(out, in, clientInput);
-////            System.out.println(serverResponse);
-//            System.out. println("Name: ");
-//            out.println(clientInput);
-//            String userName = clientInput.nextLine();
-//            System.out.println(userName + ":");
-
-
-
-
+            String userName = clientInput.nextLine();
+            out.println("name=" + userName);
+            conversationHandler(out, in, clientInput, userName);
 
             clientSocket.close();
         } catch (IOException exception) {
@@ -51,19 +32,15 @@ public class ChatAppClient {
         }
     }
 
-    public static void userName(PrintWriter out, BufferedReader in, Scanner clientInput) throws IOException{
-        String nameQuestion;
-        nameQuestion = in.readLine();
-        System.out.println(nameQuestion);
-        System.out. println("Name: ");
-        out.println(clientInput);
-        String userName = clientInput.nextLine();
-        System.out.println(userName + ":");
-    }
+    public static void conversationHandler(PrintWriter out, BufferedReader in, Scanner clientInput, String userName) throws Exception{
+        while (true) {
+            String serverText;
+            serverText = in.readLine();
+            System.out.println("Server: " + serverText);
 
-
-    public void clientConversationHandler() {
-
-
+            String clientText = clientInput.nextLine();
+            out.println(userName + ": " + clientText);
+            System.out.println(userName + ": " + clientText);
+         }
     }
 }

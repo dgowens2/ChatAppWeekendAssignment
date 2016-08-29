@@ -1,7 +1,6 @@
 package com.tiy.chat;
 
 import java.io.IOException;
-import java.net.ServerSocket;
 
 /**
  * Created by DTG2 on 08/25/16.
