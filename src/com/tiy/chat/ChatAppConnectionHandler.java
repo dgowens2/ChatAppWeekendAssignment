@@ -55,8 +55,7 @@ public class ChatAppConnectionHandler implements Runnable {
 
             if ((serverText = serverInput.nextLine()) != null) {
                 outputToClient.println(serverText);
-                System.out.println("Server: " + serverText);
-            } else if ((clientText = inputFromClient.readLine()) != null) {
+                clientText = inputFromClient.readLine();
                 System.out.println(clientText);
             }
         }

@@ -37,10 +37,10 @@ public class ChatAppClient {
             String serverText;
             serverText = in.readLine();
             System.out.println("Server: " + serverText);
+            System.out.print(userName + ": ");
 
             String clientText = clientInput.nextLine();
             out.println(userName + ": " + clientText);
-            System.out.println(userName + ": " + clientText);
          }
     }
 }
